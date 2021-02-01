@@ -18,7 +18,7 @@ def checkValue():
     lineCount = 0
 
     for line in urlsDoc:
-        if line.startswith("#"):
+        if line == "\n" or line.startswith("#"):
             continue
 
         lineSplit = line.split("=")
