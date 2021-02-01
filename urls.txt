@@ -1,0 +1,8 @@
+# All urls MUST be from finance.yahoo.com
+# Format must be 'STOCK_NAME'='URL'='TARGET_PRICE', leave no empty lines on file
+# For example
+# AMC=https://finance.yahoo.com/quote/AMC/=15
+# or don't specify a target price
+# AMC=https://finance.yahoo.com/quote/AMC/
+AMC=https://finance.yahoo.com/quote/AMC/=15
+NOK=https://finance.yahoo.com/quote/nok/
