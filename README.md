@@ -9,7 +9,7 @@ Required directories (pip installs)
 * termcolor - used to beautify the output text on the terminal
 * pygame - used for playing mp3 files
 
-        pip install bs4 requests termcolor pygame
+        $ pip install bs4 requests termcolor pygame
 
 The "urls.txt" file is supposed to be in a 
 specific format. You gotta specify a name for the
