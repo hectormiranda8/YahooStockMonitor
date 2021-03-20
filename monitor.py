@@ -10,10 +10,10 @@ priceArr = []
 stock_arr = []
 
 
-def popupmsg(stock):
+def popupmsg(msg):
+    # TODO: make pop up not stop program
     popup = tk.Tk()
     popup.wm_title("!")
-    msg = "Consider buying " + str(stock.name) + " at " + str(stock.price_low)
     label = ttk.Label(popup, text=msg, font=("Helvetica", 10))
     label.pack(side="top", fill="x", pady=10)
     B1 = ttk.Button(popup, text="Okay", command=popup.destroy)
@@ -49,14 +49,20 @@ def addValues():
 
         stock_arr.append(stock)
 
-# TODO: define whether it is worth buying or selling a stock if
-# it has increased or decreased by 2+%
+
 def worthBuying(stock):
-    print()
+    # Check how much it has changed from low to high
+    percentage_change = ((stock.price_high / stock.price_low) - 1) * 100
+    if percentage_change >= 10:
+        msg = "Consider buying " + str(stock.name) + " at " + str(stock.price_low)
+        popupmsg(msg)
 
 
 def worthSelling(stock):
-    print()
+    percentage_change = ((stock.price_high / stock.price_low) - 1) * 100
+    if percentage_change >= 10:
+        msg = "Consider selling " + str(stock.name) + " at " + str(stock.price_high)
+        popupmsg(msg)
 
 
 def checkStock(starting):
@@ -69,6 +75,7 @@ def checkStock(starting):
 
             classFind = str(pageSoup.find(class_="Trsdu(0.3s) Fw(b) Fz(36px) Mb(-4px) D(ib)"))
             # print(classFind)
+            # TODO: this does NOT account for numbers that have ',', need to fix
             nums = re.findall(r'\d+\.\d+', classFind)
             if nums is None or len(nums) < 2:
                 continue
@@ -92,6 +99,7 @@ def checkStock(starting):
                     text = termcolor.colored("HIGH\t" + str(price), 'green')
                     print(text, end="\t")
                     stock.price_high = price
+                    worthSelling(stock)
                 else:
                     text = termcolor.colored(str(stock.price_high), 'blue')
                     print("HIGH", text, end="\t")
@@ -100,6 +108,7 @@ def checkStock(starting):
                     text = termcolor.colored("LOW " + str(price), 'red')
                     print(text)
                     stock.price_low = price
+                    worthBuying(stock)
                 else:
                     text = termcolor.colored(str(stock.price_low), 'yellow')
                     print("LOW", text)
