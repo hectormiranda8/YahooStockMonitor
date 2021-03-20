@@ -6,3 +6,6 @@
 # AMC=https://finance.yahoo.com/quote/AMC/
 AMC=https://finance.yahoo.com/quote/AMC/=15
 NOK=https://finance.yahoo.com/quote/nok/
+DOGE=https://finance.yahoo.com/quote/DOGE-USD/
+XLM=https://finance.yahoo.com/quote/XLM-USD/
+BTC-USD=https://finance.yahoo.com/quote/BTC-USD/
