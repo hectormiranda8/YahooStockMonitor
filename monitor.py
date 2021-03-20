@@ -2,10 +2,23 @@ from bs4 import BeautifulSoup
 import requests, termcolor, re, time
 from pygame import mixer
 from classes.classes import Stock
+import tkinter as tk
+from tkinter import ttk
 
 firefox_header = {"User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:83.0) Gecko/20100101 Firefox/83.0'}
 priceArr = []
 stock_arr = []
+
+
+def popupmsg(stock):
+    popup = tk.Tk()
+    popup.wm_title("!")
+    msg = "Consider buying " + str(stock.name) + " at " + str(stock.price_low)
+    label = ttk.Label(popup, text=msg, font=("Helvetica", 10))
+    label.pack(side="top", fill="x", pady=10)
+    B1 = ttk.Button(popup, text="Okay", command=popup.destroy)
+    B1.pack()
+    popup.mainloop()
 
 
 def playSound():
@@ -35,6 +48,15 @@ def addValues():
             stock.target_price = target_price
 
         stock_arr.append(stock)
+
+# TODO: define whether it is worth buying or selling a stock if
+# it has increased or decreased by 2+%
+def worthBuying(stock):
+    print()
+
+
+def worthSelling(stock):
+    print()
 
 
 def checkStock(starting):
@@ -91,4 +113,4 @@ def checkStock(starting):
                 stock.price_low = price
                 print(price)
         except:
-            print("ERROR FETCHING. CONTINUING.")
+            print("ERROR OCCURRED, CONTINUING.")
